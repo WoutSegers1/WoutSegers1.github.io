@@ -28,14 +28,13 @@ h2 {
 
 .about-container {
     display: flex;
-    align-items: center;
-    gap: 20px;
+    flex-direction: column; /* zorgt dat alles onder elkaar staat */
+    align-items: flex-start;
+    gap: 15px;
 }
 
 .profile-pic {
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 220px;
     object-fit: cover;
-    border-radius: 50%;
-    border: 3px solid #222;
 }
