@@ -8,12 +8,22 @@
 </head>
 <body>
     <header>
+        <nav id="navbar">
+    <ul>
+        <li><a href="#over">Over mij</a></li>
+        <li><a href="#projecten">Projecten</a></li>
+        <li><a href="#werk">Werkervaring</a></li>
+        <li><a href="#talen">Talen</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><button id="dark-mode-toggle"><i class="fas fa-moon"></i></button></li>
+    </ul>
+</nav>
         <h1>Wout Segers</h1>
         <p>derde bachelor toegepaste informatica - Mainframe Expert</p>
     </header>
     
 
-    <section class="about">
+    <section id="over" class="about">
     <h2>Over mij</h2>
 
     <div class="about-container">
@@ -27,10 +37,10 @@
     </div>
 </section>
 
-    <section>
+    <section id="projecten">
         <h2>Projecten</h2>
 
-        <div class="project">
+        <div  class="project">
             <h3>Bachelorproef</h3>
             <p>Strategische en technische implicaties van het einde van de ondersteuning voor enterprise-opslagsystemen: een casestudy over Dell PowerMax</p>
         </div>
@@ -47,7 +57,7 @@
 
     </section>
 
-    <section>
+    <section id="werk">
     <h2>Werkervaring</h2>
 
     <div class="project">
@@ -86,7 +96,7 @@
 
 </section>
 
-<section>
+<section id="talen">
     <h2>Talen</h2>
 
     <div class="project">
@@ -96,7 +106,7 @@
     </div>
 </section>
 
-    <section>
+    <section id="contact">
     <h2>Contact</h2>
 
     <p>
@@ -116,7 +126,45 @@
 </section>
 
     <footer>
-        <p> &copy; 2026 Wout Segers</p>
+        <p> &copy; <span id="year"></span> Wout Segers</p>
     </footer>
+    <script id="z9k3dm">
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+    <script id="site-js">
+        const toggleBtn = document.getElementById('dark-mode-toggle');
+const body = document.body;
+const icon = toggleBtn.querySelector('i');
+
+// Check of de gebruiker al een voorkeur heeft opgeslagen
+if (localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark-mode');
+    icon.classList.replace('fa-moon', 'fa-sun');
+}
+
+toggleBtn.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    
+    // Verander icoon en sla voorkeur op
+    if (body.classList.contains('dark-mode')) {
+        icon.classList.replace('fa-moon', 'fa-sun');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        icon.classList.replace('fa-sun', 'fa-moon');
+        localStorage.setItem('theme', 'light');
+    }
+});
+    // Animate sections when in viewport
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    }, { threshold: 0.2 });
+
+    sections.forEach(section => observer.observe(section));
+</script>
 </body>
 </html>
