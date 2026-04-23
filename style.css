@@ -139,6 +139,13 @@ section i {
     transition: background 0.3s;
 }
 
+/* Voeg deze nieuwe class toe (deze wordt door JavaScript geactiveerd) */
+#navbar.scrolled {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Mooie diepe schaduw */
+    background: rgba(30, 41, 59, 0.95); /* Héél licht doorzichtig voor een modern effect */
+    backdrop-filter: blur(5px); /* Zorgt voor een wazig effect achter de balk (werkt op de meeste moderne browsers) */
+}
+
 #navbar ul {
     display: flex;
     list-style: none;
@@ -184,21 +191,74 @@ section.visible {
     transform: translateY(0);
 }
 
-/* Media Query voor mobiele telefoons (schermen kleiner dan 600px) */
-@media (max-width: 600px) {
+/* Styling voor de hamburgerknop (standaard onzichtbaar op grote schermen) */
+.hamburger-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 5px;
+}
+
+/* Tablet weergave (schermen tot 850px) */
+@media (max-width: 850px) {
     #navbar ul {
-        justify-content: center; /* Zet alle menu-items mooi in het midden */
-        gap: 10px; /* Maak de ruimte ertussen iets kleiner zodat er meer op één regel past */
+        flex-wrap: nowrap; /* Zorgt dat de links NIET naar een nieuwe lijn springen */
+        gap: 8px; /* Korter op elkaar */
+        justify-content: center;
+    }
+    
+    #navbar ul li a,
+    #navbar ul li button {
+        padding: 6px 8px; /* Maak de knoppen compacter */
+        font-size: 0.85rem; /* Iets kleinere tekst zodat het past */
+    }
+}
+
+/* Mobiele weergave (schermen tot 600px) */
+@media (max-width: 600px) {
+    #navbar {
+        display: flex;
+        justify-content: flex-end; /* Zet de hamburgerknop netjes rechts */
+        align-items: center;
+        padding: 15px 20px;
+    }
+
+    .hamburger-btn {
+        display: block; /* Toon de hamburgerknop */
+    }
+
+    /* Verberg het normale menu en maak het een uitklapmenu */
+    #nav-links {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 100%; /* Zet het menu direct onder de navigatiebalk */
+        left: 0;
+        width: 100%;
+        background: #1e293b; /* Zelfde kleur als de navbar */
+        padding: 10px 0 20px 0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    /* Deze class voegen we straks via JavaScript toe om het menu te tonen */
+    #nav-links.active {
+        display: flex;
+    }
+
+    #nav-links li {
+        width: 100%;
+        text-align: center;
+        margin: 5px 0;
     }
 
     #navbar ul li a,
     #navbar ul li button {
-        padding: 6px 10px; /* Maak de knoppen zelf iets compacter */
-        font-size: 0.9rem; /* Maak het lettertype een heel klein beetje kleiner */
-    }
-
-    /* We kunnen hier ook meteen de hoofdtitel iets laten krimpen voor mobiel */
-    header h1 {
-        font-size: 2rem; 
+        display: inline-block;
+        width: 80%; /* Maak de klikbare knoppen breed voor makkelijk tikken */
+        padding: 12px;
+        font-size: 1.1rem;
     }
 }

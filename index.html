@@ -10,7 +10,11 @@
 <body>
     <header>
         <nav id="navbar">
-    <ul>
+    <button id="hamburger" class="hamburger-btn">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <ul id="nav-links">
         <li><a href="#over">Over mij</a></li>
         <li><a href="#projecten">Projecten</a></li>
         <li><a href="#werk">Werkervaring</a></li>
@@ -166,6 +170,31 @@ toggleBtn.addEventListener('click', () => {
     }, { threshold: 0.2 });
 
     sections.forEach(section => observer.observe(section));
+    // Hamburgermenu logica
+const hamburgerBtn = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+const hamburgerIcon = hamburgerBtn.querySelector('i');
+
+// Open/sluit menu bij klikken op hamburger
+hamburgerBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    
+    // Verander icoontje van 3 streepjes (bars) naar een kruisje (times)
+    if (navLinks.classList.contains('active')) {
+        hamburgerIcon.classList.replace('fa-bars', 'fa-times');
+    } else {
+        hamburgerIcon.classList.replace('fa-times', 'fa-bars');
+    }
+});
+
+// Sluit het menu automatisch als er op een link wordt geklikt
+const menuItems = navLinks.querySelectorAll('a');
+menuItems.forEach(item => {
+    item.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        hamburgerIcon.classList.replace('fa-times', 'fa-bars');
+    });
+});
 </script>
 </body>
 </html>
