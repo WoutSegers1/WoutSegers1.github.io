@@ -183,3 +183,22 @@ section.visible {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* Media Query voor mobiele telefoons (schermen kleiner dan 600px) */
+@media (max-width: 600px) {
+    #navbar ul {
+        justify-content: center; /* Zet alle menu-items mooi in het midden */
+        gap: 10px; /* Maak de ruimte ertussen iets kleiner zodat er meer op één regel past */
+    }
+
+    #navbar ul li a,
+    #navbar ul li button {
+        padding: 6px 10px; /* Maak de knoppen zelf iets compacter */
+        font-size: 0.9rem; /* Maak het lettertype een heel klein beetje kleiner */
+    }
+
+    /* We kunnen hier ook meteen de hoofdtitel iets laten krimpen voor mobiel */
+    header h1 {
+        font-size: 2rem; 
+    }
+}
