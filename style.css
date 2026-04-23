@@ -217,48 +217,55 @@ section.visible {
     }
 }
 
-/* Mobiele weergave (schermen tot 600px) */
-@media (max-width: 600px) {
+/* --- Mobiele & Tablet weergave (schermen tot 850px) --- */
+@media (max-width: 850px) {
     #navbar {
         display: flex;
-        justify-content: flex-end; /* Zet de hamburgerknop netjes rechts */
+        justify-content: flex-end; 
         align-items: center;
+        flex-wrap: wrap; /* NIEUW: Zorgt dat het menu onder de knop kan vallen */
         padding: 15px 20px;
     }
 
     .hamburger-btn {
-        display: block; /* Toon de hamburgerknop */
+        display: block; 
     }
 
-    /* Verberg het normale menu en maak het een uitklapmenu */
-    #nav-links {
-        display: none; 
+    /* Menu dat de pagina naar beneden duwt (in plaats van zweven) */
+    #navbar #nav-links {
+        display: none !important; 
         flex-direction: column;
-        position: absolute;
-        top: 100%; /* Zet het menu direct onder de navigatiebalk */
-        left: 0;
-        width: 100%;
-        background: #1e293b; /* Zelfde kleur als de navbar */
-        padding: 10px 0 20px 0;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        width: 100%; /* Neemt de volle breedte, waardoor hij naar de volgende regel springt */
+        margin-top: 15px; /* Beetje ademruimte tussen de knop en de links */
+        padding: 0; 
+        border-top: 1px solid rgba(255,255,255,0.1); /* Subtiel scheidingslijntje */
     }
 
-    /* Deze class voegen we straks via JavaScript toe om het menu te tonen */
-    #nav-links.active {
-        display: flex;
+    #navbar #nav-links.active {
+        display: flex !important;
     }
 
     #nav-links li {
         width: 100%;
-        text-align: center;
-        margin: 5px 0;
+        margin: 0;
     }
 
+    /* Strakke links zonder borders voor mobiel */
     #navbar ul li a,
     #navbar ul li button {
-        display: inline-block;
-        width: 80%; /* Maak de klikbare knoppen breed voor makkelijk tikken */
-        padding: 12px;
+        display: block; 
+        width: 100%; 
+        padding: 16px 20px;
+        box-sizing: border-box;
         font-size: 1.1rem;
+        border: none; 
+        border-radius: 0; 
+        text-align: center; 
+    }
+
+    #navbar ul li a:hover,
+    #navbar ul li button:hover {
+        background: rgba(255, 255, 255, 0.05); 
+        transform: none; 
     }
 }
